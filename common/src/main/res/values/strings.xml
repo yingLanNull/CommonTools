@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Common</string>
+    <string name="common_not_install">应用未安装</string>
+</resources>
