@@ -16,6 +16,8 @@
 package com.yinglan.common;
 
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 字符串操作工具包<br>
@@ -25,7 +27,20 @@ import java.util.Locale;
 public class StringUtils {
 
     /**
-     * 判断给定字符串是否空白串 空白串是指由空格、制表符、回车符、换行符组成的字符串 若输入字符串为null或空字符串，返回true
+     * 校验字符串是否由数字英文字母和中文组成，不能有其它特殊符号
+     * @param s
+     * @return
+     */
+    public static boolean isSpecialCharacter(String s) {
+        Pattern p = Pattern.compile("^[\u4E00-\u9FA50-9a-zA-Z_!@#$&*+=.|]+$");
+        Matcher m = p.matcher(s);
+        return m.matches();
+    }
+
+    /**
+     *判断给定字符串是否空白串 空白串是指由空格、制表符、回车符、换行符组成的字符串 若输入字符串为null或空字符串，返回true
+     * @param input
+     * @return
      */
     public static boolean isEmpty(CharSequence input) {
         if (input == null || "".equals(input))

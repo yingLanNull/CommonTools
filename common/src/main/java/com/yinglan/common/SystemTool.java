@@ -189,6 +189,8 @@ public final class SystemTool {
 
     /**
      * 将签名字符串转换成需要的32位签名
+     * @param paramArrayOfByte
+     * @return
      */
     private static String hexdigest(byte[] paramArrayOfByte) {
         final char[] hexDigits = {48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 97,
