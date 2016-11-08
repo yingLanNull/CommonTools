@@ -170,7 +170,8 @@ public final class SystemTool {
     }
 
     /**
-     * 回到home，后台运行
+     * 回到HOME，后台运行
+     * @param context
      */
     public static void goHome(Context context) {
         Intent mHomeIntent = new Intent(Intent.ACTION_MAIN);

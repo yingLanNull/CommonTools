@@ -9,6 +9,8 @@ import android.widget.Toast;
 public class UrlUtils {
     /**
      * 默认的scheme跳转逻辑
+     * @param context
+     * @param scheme
      */
     public void defaultSchemeJump(Context context, String scheme) {
         if (!TextUtils.isEmpty(scheme)) {
