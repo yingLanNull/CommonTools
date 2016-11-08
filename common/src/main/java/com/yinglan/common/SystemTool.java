@@ -42,6 +42,8 @@ import java.security.MessageDigest;
 public final class SystemTool {
     /**
      * 获取手机IMEI码
+     * @param cxt
+     * @return
      */
     public static String getPhoneIMEI(Context cxt) {
         TelephonyManager tm = (TelephonyManager) cxt
@@ -80,6 +82,8 @@ public final class SystemTool {
 
     /**
      * 判断网络是否连接
+     * @param context
+     * @return
      */
     public static boolean checkNet(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context
@@ -90,6 +94,8 @@ public final class SystemTool {
 
     /**
      * 判断是否为wifi联网
+     * @param cxt
+     * @return
      */
     public static boolean isWiFi(Context cxt) {
         ConnectivityManager cm = (ConnectivityManager) cxt
@@ -103,6 +109,8 @@ public final class SystemTool {
 
     /**
      * 判断手机是否处理睡眠
+     * @param context
+     * @return
      */
     public static boolean isSleeping(Context context) {
         KeyguardManager kgMgr = (KeyguardManager) context
@@ -146,6 +154,8 @@ public final class SystemTool {
 
     /**
      * 获取当前应用程序的版本号
+     * @param context
+     * @return
      */
     public static int getAppVersionCode(Context context) {
         int version = 0;

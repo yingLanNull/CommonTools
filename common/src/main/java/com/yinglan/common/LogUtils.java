@@ -1,10 +1,5 @@
 package com.yinglan.common;
 
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
 import android.util.Log;
 
 import java.lang.reflect.Method;
