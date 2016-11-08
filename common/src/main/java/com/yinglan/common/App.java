@@ -25,16 +25,4 @@ public class App {
             INSTANCE = app;
         }
     }
-
-    public static void toast(String msg) {
-        Toast.makeText(INSTANCE, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    public static void toast(int msgId) {
-        Toast.makeText(INSTANCE, msgId, Toast.LENGTH_SHORT).show();
-    }
-
-    public static void longToast(String msg) {
-        Toast.makeText(INSTANCE, msg, Toast.LENGTH_LONG).show();
-    }
 }

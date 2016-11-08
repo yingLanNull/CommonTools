@@ -7,7 +7,9 @@ import android.os.Process;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-
+/**
+ * 线程切换工具类
+ */
 public class ThreadSwitch extends Thread {
     private static final int DEFAULT_SIZE = 8;
 
