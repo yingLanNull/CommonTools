@@ -12,6 +12,8 @@ public class DateUtils {
 
     /**
      * 指定格式返回当前系统时间
+     * @param format
+     * @return
      */
     public static String getDataTime(String format) {
         SimpleDateFormat df = new SimpleDateFormat(format, Locale.getDefault());
@@ -20,11 +22,17 @@ public class DateUtils {
 
     /**
      * 返回当前系统时间(格式以HH:mm形式)
+     * @return
      */
     public static String getDataTime() {
         return getDataTime("HH:mm");
     }
 
+    /**
+     * 是不是当日
+     * @param when
+     * @return
+     */
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static boolean isToday(long when) {
         android.text.format.Time time = new android.text.format.Time();
@@ -40,12 +48,17 @@ public class DateUtils {
                 && (time.monthDay == thenMonthDay);
     }
 
-    public static String getFriendlyTime2(Date date) {
+    /**
+     * 转换日期到指定格式方便查看的描述说明
+     *
+     * @return 今天，几天前，几个月前，几年前，很久以前（10年前）,如果出现之后的时间，则提示：未知
+     */
+    public static String getTimeLineTwo(Date date) {
         String showStr = "";
         if (isToday(date.getTime())) {
             showStr = "今天";
         } else {
-            showStr = getFriendlyTime(date);
+            showStr = getTimeLineOne(date);
         }
         return showStr;
     }
@@ -55,7 +68,7 @@ public class DateUtils {
      *
      * @return 几秒前，几分钟前，几小时前，几天前，几个月前，几年前，很久以前（10年前）,如果出现之后的时间，则提示：未知
      */
-    public static String getFriendlyTime(Date date) {
+    public static String getTimeLineOne(Date date) {
         String showStr = "";
         long yearSeconds = 31536000L;//365 * 24 * 60 * 60;
         long monthSeconds = 2592000L;//30 * 24 * 60 * 60;
