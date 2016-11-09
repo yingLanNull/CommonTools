@@ -4,7 +4,9 @@ import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
-
+/**
+ * 屏幕处理相关类
+ */
 public class DensityUtils {
 
     /**

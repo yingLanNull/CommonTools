@@ -72,6 +72,8 @@ public final class SystemTool {
 
     /**
      * 调用系统发送短信
+     * @param cxt
+     * @param smsBody 短信内容
      */
     public static void sendSMS(Context cxt, String smsBody) {
         Uri smsToUri = Uri.parse("smsto:");
@@ -110,7 +112,7 @@ public final class SystemTool {
     /**
      * 判断手机是否处理睡眠
      * @param context
-     * @return
+     * @return 返回是否睡眠
      */
     public static boolean isSleeping(Context context) {
         KeyguardManager kgMgr = (KeyguardManager) context
