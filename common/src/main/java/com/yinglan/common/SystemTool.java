@@ -32,7 +32,14 @@ import android.os.Build;
 import android.telephony.TelephonyManager;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.security.MessageDigest;
+import java.util.Enumeration;
 
 /**
  * 系统信息工具包<br>
@@ -40,8 +47,59 @@ import java.security.MessageDigest;
  * <b>创建时间</b> 2014-8-14
  */
 public final class SystemTool {
+
+
+    /**
+     * 获取手机ip地址 需联网环境下
+     *
+     * @return
+     */
+    public static String getPhoneIp() {
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
+                        // if (!inetAddress.isLoopbackAddress() && inetAddress
+                        // instanceof Inet6Address) {
+                        return inetAddress.getHostAddress().toString();
+                    }
+                }
+            }
+        } catch (Exception e) {
+        }
+        return "";
+    }
+
+    /**
+     * 获取手机mac地址
+     *
+     * @return
+     */
+    public static String getMacAddress() {
+        String macSerial = "";
+        try {
+            Process pp = Runtime.getRuntime().exec(
+                    "cat /sys/class/net/wlan0/address");
+            InputStreamReader ir = new InputStreamReader(pp.getInputStream());
+            LineNumberReader input = new LineNumberReader(ir);
+
+            String line;
+            while ((line = input.readLine()) != null) {
+                macSerial += line.trim();
+            }
+            input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return macSerial;
+    }
+
     /**
      * 获取手机IMEI码
+     *
      * @param cxt
      * @return
      */
@@ -72,6 +130,7 @@ public final class SystemTool {
 
     /**
      * 调用系统发送短信
+     *
      * @param cxt
      * @param smsBody 短信内容
      */
@@ -84,6 +143,7 @@ public final class SystemTool {
 
     /**
      * 判断网络是否连接
+     *
      * @param context
      * @return
      */
@@ -96,6 +156,7 @@ public final class SystemTool {
 
     /**
      * 判断是否为wifi联网
+     *
      * @param cxt
      * @return
      */
@@ -111,6 +172,7 @@ public final class SystemTool {
 
     /**
      * 判断手机是否处理睡眠
+     *
      * @param context
      * @return 返回是否睡眠
      */
@@ -156,6 +218,7 @@ public final class SystemTool {
 
     /**
      * 获取当前应用程序的版本号
+     *
      * @param context
      * @return
      */
@@ -173,6 +236,7 @@ public final class SystemTool {
 
     /**
      * 回到HOME，后台运行
+     *
      * @param context
      */
     public static void goHome(Context context) {
@@ -202,6 +266,7 @@ public final class SystemTool {
 
     /**
      * 将签名字符串转换成需要的32位签名
+     *
      * @param paramArrayOfByte
      * @return
      */
