@@ -5,6 +5,7 @@ import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
+import java.util.UUID;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKeyFactory;
@@ -12,6 +13,32 @@ import javax.crypto.spec.DESKeySpec;
 
 
 public class CipherUtils {
+
+    /**
+     * 获得一个UUID无－
+     *
+     * @return String UUID
+     */
+    public static String getUUID() {
+        String uuid = UUID.randomUUID().toString();
+        //去掉“-”符号
+        return uuid.replaceAll("-", "");
+    }
+
+    /**
+     * 返回一个范围随机数
+     *
+     * @param i 起始值
+     * @param j 终止值
+     * @return 随机数
+     */
+    public static int getRandom(int i, int j) {
+        int b = j - i + 1;
+        int m = (int) (Math.random() * b) + i;
+        return m;
+    }
+
+
     /**
      * MD5加密
      * <br>http://stackoverflow.com/questions/1057041/difference-between-java-and-php5-md5-hash
