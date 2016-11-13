@@ -5,6 +5,7 @@ import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
+import java.util.Random;
 import java.util.UUID;
 
 import javax.crypto.Cipher;
@@ -36,6 +37,23 @@ public class CipherUtils {
         int b = j - i + 1;
         int m = (int) (Math.random() * b) + i;
         return m;
+    }
+
+    /**
+     * 返回一个指定位数随机数
+     *
+     * @param i
+     * @return 随机数
+     */
+    public static int getRandom(int i) {
+        Random jjj = new Random();
+        if (i == 0)
+            return -1;
+        StringBuilder str = new StringBuilder();//定义变长字符串
+        for (int k = 0; k < i; k++) {
+            str.append(jjj.nextInt(10));
+        }
+        return Integer.parseInt(str.toString());
     }
 
 
