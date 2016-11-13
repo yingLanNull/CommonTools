@@ -12,8 +12,9 @@ public class DateUtils {
 
     /**
      * 指定格式返回当前系统时间
+     *
      * @param format
-     * @return
+     * @return 指定格式返回当前系统时间
      */
     public static String getDataTime(String format) {
         SimpleDateFormat df = new SimpleDateFormat(format, Locale.getDefault());
@@ -21,8 +22,44 @@ public class DateUtils {
     }
 
     /**
-     * 返回当前系统时间(格式以HH:mm形式)
+     * 格式化时间
+     *
+     * @param time 毫秒值
      * @return
+     */
+    public static String getDataTime(long time) {
+        Date d = new Date(time);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(d);
+    }
+
+    /**
+     * 将String型格式化,比如想要将2011-11-11格式化成2011年11月11日,就StringPattern("2011-11-11","yyyy-MM-dd","yyyy年MM月dd日").
+     *
+     * @param date       String 想要格式化的日期
+     * @param oldPattern String 想要格式化的日期的现有格式
+     * @param newPattern String 想要格式化成什么格式
+     * @return String
+     */
+    public static String StringPattern(String date, String oldPattern, String newPattern) {
+        if (date == null || oldPattern == null || newPattern == null)
+            return "";
+        SimpleDateFormat sdf1 = new SimpleDateFormat(oldPattern);        // 实例化模板对象
+        SimpleDateFormat sdf2 = new SimpleDateFormat(newPattern);        // 实例化模板对象
+        Date d = null;
+        try {
+            d = sdf1.parse(date);   // 将给定的字符串中的日期提取出来
+        } catch (Exception e) {            // 如果提供的字符串格式有错误，则进行异常处理
+            e.printStackTrace();       // 打印异常信息
+        }
+        return sdf2.format(d);
+    }
+
+
+    /**
+     * 返回当前系统时间(格式以HH:mm形式)
+     *
+     * @return 返回当前系统时间(格式以HH:mm形式)
      */
     public static String getDataTime() {
         return getDataTime("HH:mm");
@@ -30,8 +67,9 @@ public class DateUtils {
 
     /**
      * 是不是当日
+     *
      * @param when
-     * @return
+     * @return 是不是当日
      */
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static boolean isToday(long when) {
@@ -51,6 +89,17 @@ public class DateUtils {
     /**
      * 转换日期到指定格式方便查看的描述说明
      *
+     * @param time 毫秒值
+     * @return 今天，几天前，几个月前，几年前，很久以前（10年前）,如果出现之后的时间，则提示：未知
+     */
+    public static String getTimeLineTwo(long time) {
+        Date date = new Date(time);
+        return getTimeLineTwo(date);
+    }
+
+    /**
+     * 转换日期到指定格式方便查看的描述说明
+     *
      * @return 今天，几天前，几个月前，几年前，很久以前（10年前）,如果出现之后的时间，则提示：未知
      */
     public static String getTimeLineTwo(Date date) {
@@ -61,6 +110,17 @@ public class DateUtils {
             showStr = getTimeLineOne(date);
         }
         return showStr;
+    }
+
+    /**
+     * 转换日期到指定格式方便查看的描述说明
+     *
+     * @param time 毫秒值
+     * @return 几秒前，几分钟前，几小时前，几天前，几个月前，几年前，很久以前（10年前）,如果出现之后的时间，则提示：未知
+     */
+    public static String getTimeLineOne(long time) {
+        Date date = new Date(time);
+        return getTimeLineOne(date);
     }
 
     /**
