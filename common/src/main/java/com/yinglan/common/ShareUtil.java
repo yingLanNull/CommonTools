@@ -2,6 +2,7 @@ package com.yinglan.common;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 
 /**
  * 描述：系统分享工具类
@@ -9,7 +10,7 @@ import android.content.Intent;
 public class ShareUtil {
 
     /**
-     * 分享
+     * 文本分享
      */
     public static void share(Context context, String content) {
         Intent intent = new Intent(Intent.ACTION_SEND);
@@ -19,4 +20,18 @@ public class ShareUtil {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(Intent.createChooser(intent, "分享"));
     }
+
+    /**
+     * 图片分享
+     */
+    public static void share(Context context, Uri uri) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
+        intent.putExtra(Intent.EXTRA_TEXT, uri);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(Intent.createChooser(intent, "分享"));
+    }
+
+
 }
