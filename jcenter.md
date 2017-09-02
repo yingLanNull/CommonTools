@@ -34,7 +34,23 @@ classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
 classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 ```
 
+#### MAC
+
 ```
 ./gradlew install
 ./gradlew bintrayUpload
+```
+#### WINDOWS
+   
+```
+gradlew install
+gradlew bintrayUpload
+```
+
+####FAQ
+```
+Q:-bash: ./gradlew: Permission denied
+
+A:chmod +x gradlew 
+
 ```
