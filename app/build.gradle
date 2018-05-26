@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.yinglan.commontools"
         minSdkVersion 14
@@ -38,43 +38,6 @@ android {
             //移除无用的resource文件
             //shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-}
-
-android.applicationVariants.all { variant ->
-
-    variant.outputs.each { output ->
-        def outputFile = output.outputFile
-        if (outputFile != null && outputFile.name.endsWith('.apk')) {
-            //def fileName = outputFile.name;
-            def fileName = "***.apk";
-            if (variant.buildType.name.equals('release')) {
-                fileName = "***_release.apk";
-            }
-
-            if (variant.buildType.name.equals('debug')) {
-                fileName = "***_debug.apk";
-            }
-
-            if (android.defaultConfig.versionName != null) {
-                fileName = fileName.replace(".apk", "_${android.defaultConfig.versionName}.apk")
-            }
-            if (project.hasProperty('OUT_PUT_APK_SUFFIX_PARA')) {
-                fileName = fileName.replace(".apk", "_${OUT_PUT_APK_SUFFIX_PARA}.apk")
-            }
-            def today = new Date().format('yyyy-MM-dd-HH:mm');
-            // APK输出文件名规则：aiyou_版本名_后缀名_release.apk
-            fileName = fileName.replace(".apk", "_${today}.apk")
-            if (project.hasProperty('OUT_PUT_DIR_PARA')) {
-                File output_dir1 = file("${OUT_PUT_DIR_PARA}");
-                output.outputFile = new File(output_dir1, fileName)
-                println "输出文件位置： " + output.outputFile
-                //}
-            } else {
-                output.outputFile = new File(fileName)
-                println "输出文件位置： " + output.outputFile
-            }
         }
     }
 }
